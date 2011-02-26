@@ -46,7 +46,7 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
 }
 #article .highlight { margin-bottom: 16px; }
 #article .highlight pre {
-  padding: 10px 20px 12px 20px;
+  padding: 14px 20px 16px 20px;
   background: #121212;
   text-shadow: 1px 1px 0 black;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
@@ -73,22 +73,38 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   text-align: left;
   font-size: 1.3em;
   color: #555555;
-  text-align: center;
   position: relative;
   z-index: 2;
-  border-top: 1px solid #ededed;
   padding-top: 20px;
   margin-top: 50px;
 }
 #right #meta a {
   color: #444444;
   text-decoration: none;
-  border-bottom: 1px solid white;
 }
 #right #meta a:hover {
   color: #333333;
   border-bottom: 1px solid #333333;
 }
+#right #meta .left {
+  width: 50%;
+  float: left;
+}
+#right #meta .right {
+  width: 50%;
+  float: left;
+}
+#right #meta h3 {
+  padding-bottom: 10px;
+  font-size: 1.8em;
+  text-shadow: 1px 1px 0 white;
+}
+#right #meta ul { line-height: 20px; }
+#right #meta ul li {
+  padding: 5px 0 5px 0;
+  line-height: 16px;
+}
+#right #meta ul:first-child { padding-right: 14px; }
 #thebigq {
   position: absolute;
   top: 60px;

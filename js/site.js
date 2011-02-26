@@ -1,21 +1,32 @@
 // this script does not belong to an article but the quickie site
 
 $(document).ready(function() {
-  var win      = $(window),
-      demoWrap = $('#demowrap');
+  var win   = $(window),
+      right = $('#right');
   
   win.resize(function() {
-    var newWidth = win.width() - 800;
+    var newWidth = win.width() - 650;
     
     if(newWidth >= 400) {
-      demoWrap.width(newWidth);
+      right.width(newWidth);
     } else {
       //catch user with smaller screens
-      demoWrap.width(550);
+      right.width(550);
     }
   }).resize();
   
   setTimeout(function() {
     $('#thebigq').fadeIn('slow');
   }, 600);
+  
+  var quickie  = $('#quickie'),
+      posted   = $('.date a', quickie),
+      id       = posted.attr('href').split('/')[3],
+      date     = new Date(posted.text()),
+      zeronize = function(num) { return num <= 9 ? '0' + num : num },
+      basename = date.getFullYear() + '-' + zeronize(date.getMonth() + 1) + '-' + zeronize(date.getDate()) + '-' + id,
+      posturl  = 'https://github.com/quickie/quickie.github.com/blob/master/_posts/' + basename + '.html',
+      srcurl   = 'https://github.com/quickie/quickie.github.com/tree/master/js/' + basename + '.js';
+  
+  $('body').append('<script src="/js/' + basename + '.js" type="text/javascript"></script>');
 });

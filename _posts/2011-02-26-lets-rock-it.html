@@ -1,6 +1,8 @@
 ---
 title: Pixilate and Unpixilate a Image with jQuery
 layout: default
+author: Sebastian Senf
+authorurl: http://twitter.com/mustardamus
 ---
 
 <div id="article">
@@ -39,7 +41,20 @@ function sweet() { //ow yes
     </div>
   </div>
   <div id="meta">
-    22.02.2011 - <a href="#">Post @ Github</a> - <a href="#">Source @ Github</a> - By <a href="#">Sebastian Senf</a>
+    <div class="left">
+      <h3>More Quickies</h3>
+      <ul>
+        {% for post in site.posts %}
+            <li><a href="{{ post.url }}" title="Permalink">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="right">
+      <h3>This Quickie</h3>
+      <ul id="quickie">
+        <li class="date">Posted <a href="http://quickie.github.com{{ page.id }}">{{ page.date }}</a></li>
+        <li>By <a href="{{ page.authorurl }}">{{ page.author }}</a></li>
+      </ul>
+    </div>
   </div>
 </div>
-<script type="text/javascript" src="/js{{ page.id }}.js"></script>
