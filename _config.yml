@@ -1,0 +1,4 @@
+pygments: true
+paginate: 1
+permalink: /:title
+auto: true
