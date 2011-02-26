@@ -1,3 +1,0 @@
-Sitemap: http://quickie.usejquery.com/sitemap.xml
-
-User-agent: *
