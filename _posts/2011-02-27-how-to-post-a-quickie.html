@@ -1,0 +1,64 @@
+---
+title: How to post a Quickie
+author: Sebastian Senf
+authorurl: http://usejquery.com
+layout: default
+---
+
+<div id="article">
+  <h1>{{ page.title }}</h1>
+  
+  <p>
+    This website is compiled via <a href="https://github.com/mojombo/jekyll/">Jekyll</a>
+    and hosted on <a href="https://github.com/">Github</a>. To publish a Quickie
+    you need a Github account and a <a href="http://help.github.com/forking/">Fork</a>
+    of the <a href="https://github.com/quickie/quickie.github.com">Quickie Repo</a>.
+  </p>
+  
+  <p>
+    Clone your fork to your machine.
+  </p>
+  
+  {% highlight bash %}~/Code/Jekyll $ git clone git@github.com:quickie/quickie.github.com.git quickie-publish
+Cloning into quickie-publish...
+remote: Counting objects: 52, done.
+remote: Compressing objects: 100% (46/46), done.
+remote: Total 52 (delta 16), reused 0 (delta 0)
+Receiving objects: 100% (52/52), 10.52 KiB, done.
+Resolving deltas: 100% (16/16), done.
+~/Code/Jekyll $ cd quickie-publish/
+~/Code/Jekyll/quickie-publish $ ls
+_config.yml _layouts    _posts      _site       css         index.html  js          robots.txt  sitemap.xml
+~/Code/Jekyll/quickie-publish ${% endhighlight %}
+
+  <p>
+    Create your article.
+  </p>
+</div>
+
+<div id="right">
+  <div id="demowrap">
+    <h2>#demo</h2>
+
+    <div id="demo">
+      <!-- ALL YOUR DEMO HTML WILL GO IN HERE, ACCESS IT VIA $('#demo') -->
+    </div>
+  </div>
+  
+  <!-- Don't change the following lines unless you know what you do -->
+  <div id="meta">
+    <div class="left">
+      <h3>More Quickies</h3>
+      <ul>
+        {% for post in site.posts %}<li><a href="{{ post.url }}">{{ post.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div class="right">
+      <h3>This Quickie</h3>
+      <ul id="quickie">
+        <li class="date">Posted <a href="http://quickie.github.com{{ page.id }}">{{ page.date }}</a></li>
+        <li>By <a href="{{ page.authorurl }}">{{ page.author }}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
