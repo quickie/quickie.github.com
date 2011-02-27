@@ -6,6 +6,7 @@ body {
   position: relative;
 }
 h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
+.clear { clear: both; }
 #article {
   background: white;
   margin: 50px 0 50px 50px;
