@@ -6,10 +6,14 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   * { position: relative; z-index: 2; }
   h1 { font-size: 3.2em; padding: 20px; line-height: 1.3em; }
   h4 { font-size: 1.8em; display: inline; background: #121212; padding: 8px 20px 5px 20px; color: #aaa; text-shadow: 1px 1px 0 #111; float: right; right: -30px; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; z-index: 3; }
-  p { font-size: 1.4em; padding: 0 20px 16px 20px; line-height: 1.42em; }
+  p { font-size: 1.4em; padding: 0 20px 16px 20px; line-height: 1.42em;
+    code { background: #eee; padding: 2px 4px; font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace; }
+  }
+  a { color: rgb(14, 103, 161); text-decoration: none; }
+  a:hover { text-decoration: underline; }
   
   .highlight { margin-bottom: 16px;
-    pre { padding: 14px 20px 16px 20px; background: #121212; text-shadow: 1px 1px 0 black; font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace; font-size: 14px; }
+    pre { padding: 14px 20px 16px 20px; background: #121212; text-shadow: 1px 1px 0 black; font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace; font-size: 14px; overflow: auto; line-height: 19px; }
   }
 }
 

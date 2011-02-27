@@ -45,6 +45,16 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   padding: 0 20px 16px 20px;
   line-height: 1.42em;
 }
+#article p code {
+  background: #eeeeee;
+  padding: 2px 4px;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+#article a {
+  color: #0e67a1;
+  text-decoration: none;
+}
+#article a:hover { text-decoration: underline; }
 #article .highlight { margin-bottom: 16px; }
 #article .highlight pre {
   padding: 14px 20px 16px 20px;
@@ -52,6 +62,8 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   text-shadow: 1px 1px 0 black;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
+  overflow: auto;
+  line-height: 19px;
 }
 #right { float: left; }
 #right #demowrap {
