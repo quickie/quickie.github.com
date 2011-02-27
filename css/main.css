@@ -15,6 +15,7 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   -moz-box-shadow: 0 0 5px #aaaaaa;
   -webkit-box-shadow: 0 0 5px #aaaaaa;
   position: relative;
+  min-height: 300px;
 }
 #article * {
   position: relative;

@@ -1,0 +1,48 @@
+---
+title: Your nice descriptive Title
+author: Your Name
+authorurl: http://url.com
+layout: default
+---
+
+<div id="article">
+  <h1>{{ page.title }}</h1>
+  
+  <p>
+    Write an short intro, what your stuff is doing and where the visitor should pay attention.
+    Create your JS file with the same name as this post (yyyy-mm-dd-slug) but with the .js extension.
+    This script will be loaded automatically. If you need to include more scripts do so in your post.. it's HTML :)
+  </p>
+  
+  <h4>Highlight a source code with a heading</h4>
+  {% highlight javascript %}$('.yourcode');
+//and some other sweet code
+{% endhighlight %}
+</div>
+
+<div id="right">
+  <div id="demowrap">
+    <h2>#demo</h2>
+
+    <div id="demo">
+      <!-- ALL YOUR DEMO HTML WILL GO IN HERE, ACCESS IT VIA $('#demo') -->
+    </div>
+  </div>
+  
+  <!-- Don't change the following lines unless you know what you do -->
+  <div id="meta">
+    <div class="left">
+      <h3>More Quickies</h3>
+      <ul>
+        {% for post in site.posts %}<li><a href="{{ post.url }}">{{ post.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div class="right">
+      <h3>This Quickie</h3>
+      <ul id="quickie">
+        <li class="date">Posted <a href="http://quickie.github.com{{ page.id }}">{{ page.date }}</a></li>
+        <li>By <a href="{{ page.authorurl }}">{{ page.author }}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
