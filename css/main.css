@@ -29,17 +29,9 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
 }
 #article h4 {
   font-size: 1.8em;
-  display: inline;
-  background: #121212;
   padding: 8px 20px 5px 20px;
-  color: #aaaaaa;
-  text-shadow: 1px 1px 0 #111111;
-  float: right;
-  right: -30px;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  z-index: 3;
+  color: #888888;
+  text-align: right;
 }
 #article p {
   font-size: 1.4em;
