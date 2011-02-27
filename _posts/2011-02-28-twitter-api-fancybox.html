@@ -1,0 +1,176 @@
+---
+title: Putting together jQuery, Twitter API and Fancybox
+author: Sebastian Senf
+authorurl: http://usejquery.com
+layout: default
+---
+
+<div id="article">
+  <h1>{{ page.title }}</h1>
+  
+  <p>
+    Which jQuery Lightbox Plugin to choose? There are
+    <a href="http://line25.com/articles/rounding-up-the-top-10-jquery-lightbox-scripts">plenty</a> and
+    probably some more you don't know about.
+  </p>
+  <p>
+    I don't really remember for how long I use <a href="http://fancybox.net/">Fancybox</a>, but since
+    the switch it has been my favorite tool in all 'lightbox' questions.
+  </p>
+  <p>
+    Let's put that together with the Twitter API to make the demo a little bit more dynamically.
+  </p>
+  
+  <h4>The Script</h4>
+  {% highlight javascript %}var userInfo = [
+      { name: 'Following',        key: 'friends_count'   },
+      { name: 'Followers',        key: 'followers_count' },
+      { name: 'Statuses',         key: 'statuses_count'  },
+      { name: 'URL',              key: 'url'             } 
+    ],
+    searchTerm = 'jquery',
+    searchUrl  = 'http://search.twitter.com/search.json?q=' + searchTerm + '+filter:links&rpp=5',
+    statusText = 'Click on the User Link or Picture for more information',
+    tweetLi    = function(user, image, text) {
+      return '<span><a href="http://twitter.com/' + user + '">' + user + '</a></span>' +
+             '<img src="' + image + '" width="48" height="48" />' +
+             '<p>' + urlize(text) + '</p>';
+    },
+    waitDiv    = function(user) {
+      return '<div class="fb-wait">Querying the Twitter API for @' + user + '...</div>';
+    },
+    userUrl    = function(user) {
+      return 'http://twitter.com/users/' + user + '.json';
+    },
+    infoWrap   = function(json) {
+      var infos = ''
+      
+      for(i = 0; i < userInfo.length; i++) {
+        var info = json[userInfo[i].key];
+        
+        if(info) {
+          infos += '<li>' + 
+                     urlize('<span>' + userInfo[i].name + '</span>' + info); +
+                   '</li>'
+        }
+      }
+
+      return '<div class="fb-info">' +
+                '<h1><a href="http://twitter.com/' + json.screen_name + '">@' + json.screen_name + '</a></h1>' +
+                '<img src="' + json.profile_image_url + '" width="128" height="128" />' +
+                '<ul>' + infos + '</ul>' +
+             '</div>'
+    },
+    urlize     = function(text) { //http://stackoverflow.com/questions/37684/replace-url-with-html-links-javascript
+      var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+      return text.replace(exp, '<a href="$1">$1</a>');
+    };
+    
+    
+function displayUserInformation(user) {
+  $.fancybox(waitDiv(user));
+  
+  $.getJSON(userUrl(user) + '?callback=?', function(json) {
+    $.fancybox(infoWrap(json), {
+      scrolling: false
+    });
+  });
+}
+
+$(document).ready(function() {
+  var demo   = $('#demo'),
+      tweets = $('<ul/>').appendTo(demo);
+  
+  $.getJSON(searchUrl + '&callback=?', function(json) {
+    var results = json.results;
+    
+    $('.status', demo).text(statusText);
+    
+    for(i = 0; i < results.length; i++) {
+      var t = results[i];
+      
+      $('<li/>', {
+        html: tweetLi(t.from_user, t.profile_image_url, t.text)
+      }).appendTo(tweets);
+    }
+    
+    $('li img, li span a', tweets).click(function() {
+      var userLi = $(this).parent();
+          userLi = userLi.is('li') ? userLi : userLi.parent(); //coming from <a>
+      
+      displayUserInformation(userLi.find('span a').text());
+      return false;
+    });
+  });
+});{% endhighlight %}
+
+  <h4>The HTML</h4>
+  {% highlight html %}<div id="demo">
+  <div class="status">Finding Tweets containing 'jQuery' and Links...</div>
+</div>{% endhighlight %}
+
+  <h4>The Styling</h4>
+  {% highlight css %}#demo ul li { padding: 10px; position: relative; min-height: 58px; margin: 10px; }
+#demo ul li img { position: absolute; top: 10px; left: 10px; border: 1px solid #999; box-shadow: 0 0 2px #aaa; -moz-box-shadow: 0 0 2px #aaa; -webkit-box-shadow: 0 0 2px #aaa; cursor: pointer; }
+#demo ul li span { position: absolute; top: 10px; left: 80px; }
+#demo ul li span a { font-size: 1.4em; font-weight: bold; color: #111; text-shadow: 1px 1px 0 white; text-decoration: none; }
+#demo ul li p { position: absolute; top: 30px; left: 80px; font-size: 1.1em; line-height: 1.4em; color: #333; }
+#demo ul li p a { color: black; }
+#demo .status { text-align: center; font-size: 1.3em; padding-bottom: 10px; color: #444; }
+.fb-wait { font-size: 1.8em; padding: 20px; width: 500px; text-align: center; }
+.fb-info { padding: 20px; position: relative; min-height: 138px; }
+.fb-info img { position: absolute; top: 20px; left: 20px; }
+.fb-info h1 { position: absolute; top: 20px; left: 168px; font-size: 2em; }
+.fb-info h1 a { color: black; }
+.fb-info ul { margin: 30px 0 0 158px; }
+.fb-info ul li { font-size: 1.3em; padding-bottom: 12px; }
+.fb-info ul li span { font-weight: bold; padding-right: 8px; }{% endhighlight %}
+</div>
+
+<div id="right">
+  <div id="demowrap">
+    <h2>#demo</h2>
+    
+    <style type="text/css" media="screen">
+      #demo ul li { padding: 10px; position: relative; min-height: 58px; margin: 10px; }
+      #demo ul li img { position: absolute; top: 10px; left: 10px; border: 1px solid #999; box-shadow: 0 0 2px #aaa; -moz-box-shadow: 0 0 2px #aaa; -webkit-box-shadow: 0 0 2px #aaa; cursor: pointer; }
+      #demo ul li span { position: absolute; top: 10px; left: 80px; }
+      #demo ul li span a { font-size: 1.4em; font-weight: bold; color: #111; text-shadow: 1px 1px 0 white; text-decoration: none; }
+      #demo ul li p { position: absolute; top: 30px; left: 80px; font-size: 1.1em; line-height: 1.4em; color: #333; }
+      #demo ul li p a { color: black; }
+      #demo .status { text-align: center; font-size: 1.3em; padding-bottom: 10px; color: #444; }
+      .fb-wait { font-size: 1.8em; padding: 20px; width: 500px; text-align: center; }
+      .fb-info { padding: 20px; position: relative; min-height: 138px; }
+      .fb-info img { position: absolute; top: 20px; left: 20px; }
+      .fb-info h1 { position: absolute; top: 20px; left: 168px; font-size: 2em; }
+      .fb-info h1 a { color: black; }
+      .fb-info ul { margin: 30px 0 0 158px; }
+      .fb-info ul li { font-size: 1.3em; padding-bottom: 12px; }
+      .fb-info ul li span { font-weight: bold; padding-right: 8px; }
+    </style>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/fancybox/jquery.fancybox-1.3.4.css" />
+    <script type="text/javascript" src="/assets/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    
+    <div id="demo">
+      <div class="status">Finding Tweets containing 'jQuery' and Links...</div>
+    </div>
+  </div>
+  
+  <!-- Don't change the following lines unless you know what you do -->
+  <div id="meta">
+    <div class="left">
+      <h3>More Quickies</h3>
+      <ul>
+        {% for post in site.posts %}<li><a href="{{ post.url }}">{{ post.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div class="right">
+      <h3>This Quickie</h3>
+      <ul id="quickie">
+        <li class="date">Posted <a href="http://quickie.github.com{{ page.id }}">{{ page.date }}</a></li>
+        <li>By <a href="{{ page.authorurl }}">{{ page.author }}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

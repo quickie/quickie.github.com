@@ -58,6 +58,7 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
 #article a:hover { text-decoration: underline; }
 #article .highlight { margin-bottom: 16px; }
 #article .highlight pre {
+  width: 560px;
   padding: 14px 20px 16px 20px;
   background: #121212;
   text-shadow: 1px 1px 0 black;
@@ -118,7 +119,8 @@ h1, h2, h3, h4, #thebigq { font-family: 'Kreon', arial, serif; }
   padding: 5px 0 5px 0;
   line-height: 16px;
 }
-#right #meta ul:first-child { padding-right: 14px; }
+#right #meta .right h3 { padding-left: 30px; }
+#right #meta .right ul { padding-left: 30px; }
 #thebigq {
   position: absolute;
   top: 60px;
