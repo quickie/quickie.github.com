@@ -35,6 +35,30 @@ _config.yml _layouts    _posts      _site       css         index.html  js      
     Then create your Quickie in the <code>_posts</code> directory. Use the
     <code>yyyy-mm-dd-quickie-template.html</code> Template for a starting point.
   </p>
+  
+  <p>
+    Commit your changes and push them to your fork.
+  </p>
+  
+  {% highlight bash %}~/Code/Jekyll/quickie-publish $ git add .
+~/Code/Jekyll/quickie-publish $ git commit -m "made article changes"
+[master 671b9c8] made article changes
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+~/Code/Jekyll/quickie-publish $ git push
+Counting objects: 9, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 614 bytes, done.
+Total 5 (delta 3), reused 0 (delta 0)
+To git@github.com:mustardamus/quickie.github.com.git
+   46a2455..671b9c8  master -> master
+~/Code/Jekyll/quickie-publish ${% endhighlight %}
+  
+  <p>
+    If you are happy with your changes send in a
+    <a href="http://help.github.com/pull-requests/">Pull Request</a>. Done. I'll review your Post and publish
+    it within' some days.
+  </p>
 </div>
 
 <div id="right">
